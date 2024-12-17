@@ -1,0 +1,70 @@
+import java.util.Scanner;
+import java.lang.*;
+class ExceptionsTest {
+    Scanner scr = new Scanner(System.in);
+    int a[] = new int[5];
+    public void demonstrateNumberFormatException() {
+       try {
+          System.out.println("Enter a number for NumberFormatException (input a string to cause exception): ");
+          int num = Integer.parseInt(scr.next());
+       } catch (NumberFormatException e) {
+          System.out.println("Caught NumberFormatException: " + e.getMessage());
+       }
+    }
+    public void demonstrateArithmeticException() {
+       try {
+          System.out.println("Enter a number to divide by zero for ArithmeticException: ");
+          int num = scr.nextInt();
+          int result = num / 0;
+       } catch (ArithmeticException e) {
+          System.out.println("Caught ArithmeticException: " + e.getMessage());
+       }
+    }
+    public void demonstrateArrayIndexOutOfBoundsException() {
+       try {
+          System.out.println("Enter 5 elements for the array:");
+             for (int i = 0; i < 5; i++) {
+                a[i] = scr.nextInt();
+             }
+             for (int i = 0; i <= 5; i++) {
+                System.out.println("a[" + i + "] : " + a[i]);
+             }
+        } catch (ArrayIndexOutOfBoundsException e) {
+            System.out.println("Caught ArrayIndexOutOfBoundsException: " + e.getMessage());
+        } catch (Exception e) {
+            System.out.println("Caught General Exception: " + e.getMessage());
+        }
+    }
+}
+public class exception {
+    public static void main(String args[]) {
+        ExceptionsTest e = new ExceptionsTest();
+        Scanner scr = new Scanner(System.in);
+        int choice;
+        do {
+            System.out.println("1. Number Format Exception");
+            System.out.println("2. Arithmetic Exception");
+            System.out.println("3. Array Index Out of Bound Exception");
+            System.out.println("4. Exit");
+            System.out.println("\nEnter your choice:");
+            choice = scr.nextInt();
+            switch (choice) {
+                case 1:
+                    e.demonstrateNumberFormatException();
+                    break;
+                case 2:
+                    e.demonstrateArithmeticException();
+                    break;
+                case 3:
+                    e.demonstrateArrayIndexOutOfBoundsException();
+                    break;
+                case 4:
+                    System.out.println("Exiting...");
+                    break;
+                default:
+                    System.out.println("Invalid Choice!");
+            }
+        } while (choice != 5);
+        scr.close();
+    }
+}
