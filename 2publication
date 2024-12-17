@@ -1,0 +1,98 @@
+package riyat;
+import java.util.*;
+abstract class Publication {
+	String title;
+	double price;
+	int copies;
+	Scanner scr=new Scanner(System.in);
+	abstract void saleCopy(); 
+	void display() {
+		System.out.println("\nThese are available publications with us.");
+	}
+}
+class Book extends Publication {
+	String author;
+	void display() {
+		title="Java";
+		author="Harbert Schildt";
+		price=900;
+		System.out.println("\nBook available wiht us : ");
+		System.out.println("\nTitle\tAuthor\tPrice");
+		System.out.println("\n"+title+"\t"+author+"\t"+price);		
+	}
+	void ordCopies() {
+		System.out.println("\nHow many copies you want to order : ");
+		copies=scr.nextInt();		
+	}
+	void saleCopy() {
+		System.out.println("\nTotal book sell : "+copies*price);
+	}
+}
+class Magazine extends Publication {
+	void currentIssue()  {
+		System.out.println("\nCurrent issued magazines are yet to come....");
+		
+	}
+	void receiveIssue() {
+		System.err.println("\nReceived magazines are displayed below....");
+		
+	}
+	void display() {
+		title="Oracle Time";
+		
+		price=300;
+		System.out.println("\nMagazine available wiht us : ");
+		System.out.println("\nTitle\tPrice");
+		System.out.println("\n"+title+"\t"+price);		
+	}
+	void orderQty() {
+		System.out.println("\nEnter the number of copies you want to order : ");
+		copies=scr.nextInt();		
+	}
+	
+	
+	void saleCopy() {
+		System.out.println("\nTotal magazine sell : "+copies*price);
+	}
+	
+}
+public class Main5 {
+
+	public static void main(String[] args) {
+		int ch;
+		String choice=null;
+		Scanner scr=new Scanner(System.in);
+		do {
+			System.out.println("\n__MENU");
+			System.out.println("\n1. Book   2. Magazine ");
+			System.out.println("\nEnter your choice to order : ");
+			ch=scr.nextInt();
+			switch(ch) {
+			case 1:
+				Book bk=new Book();
+				bk.display();
+				bk.ordCopies();
+				bk.saleCopy();
+				System.out.println("\nDo you want to order something more? press 'y'");
+				choice=scr.next();
+				break;
+			case 2:
+				Magazine mgz=new Magazine();
+				mgz.currentIssue();
+				mgz.receiveIssue();
+				mgz.display();
+				mgz.orderQty();
+				mgz.saleCopy();
+				System.out.println("\nDo you want to order something more? press 'y'");	
+				choice=scr.next();
+				break;
+			default:
+				System.out.println("\nInvalid choice. please try again.");
+				
+			}
+		}while(choice.equalsIgnoreCase("y"));
+		
+
+	}
+
+}
