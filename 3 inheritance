@@ -1,0 +1,218 @@
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Scanner;
+
+class Employee {
+    private String name;
+    private String id;
+    private String address;
+    private String mailId;
+    private String mobileNo;
+
+    public Employee(String name, String id, String address, String mailId, String mobileNo) {
+        this.name = name;
+        this.id = id;
+        this.address = address;
+        this.mailId = mailId;
+        this.mobileNo = mobileNo;
+    }
+
+    public void display() {
+        System.out.println("Employee Name: " + name);
+        System.out.println("Employee Id: " + id);
+        System.out.println("Mail_id: " + mailId);
+        System.out.println("Contact_no: " + mobileNo);
+    }
+
+    public void paySlip() {
+        // Default implementation (could be abstract or empty)
+    }
+}
+
+class Programmer extends Employee {
+    private double BP;
+    private String des;
+
+    public Programmer(String name, String id, String address, String mailId, String mobileNo, double bPay, String des) {
+        super(name, id, address, mailId, mobileNo);
+        this.BP = bPay;
+        this.des = des;
+    }
+
+    public void paySlip() {
+        double DA = BP * 0.97;
+        double HRA = BP * 0.10;
+        double GrossSalary = BP + DA + HRA;
+        double PF = BP * 0.12;
+        double SCF = BP * 0.12;
+        double NetSalary = GrossSalary - PF - SCF;
+
+        System.out.println("----------------Employee Pay Slips----------------");
+        this.display();
+        System.out.println("Designation: " + des);
+        System.out.println("Basic_Pay: " + BP);
+        System.out.println("Gross Salary: " + GrossSalary + "\t" + "Net Salary: " + NetSalary);
+        System.out.println("---------------------------------------------");
+    }
+}
+
+class Team_Lead extends Employee {
+    private double BP;
+    private String des;
+
+    public Team_Lead(String name, String id, String address, String mailId, String mobileNo, double bPay, String des) {
+        super(name, id, address, mailId, mobileNo);
+        this.BP = bPay;
+        this.des = des;
+    }
+
+    public void paySlip() {
+        double DA = BP * 0.97;
+        double HRA = BP * 0.10;
+        double GrossSalary = BP + DA + HRA;
+        double PF = BP * 0.10;
+        double SCF = BP * 0.10;
+        double NetSalary = GrossSalary - PF - SCF;
+
+        System.out.println("---------------Employee Pay Slips----------------");
+        this.display();
+        System.out.println("Designation: " + des);
+        System.out.println("Basic_Pay: " + BP);
+        System.out.println("Gross Salary: " + GrossSalary + "\t" + "Net Salary: " + NetSalary);
+        System.out.println("---------------------------------------------");
+    }
+}
+
+class Assistant_Project_Manager extends Employee {
+    private double BP;
+    private String des;
+
+    public Assistant_Project_Manager(String name, String id, String address, String mailId, String mobileNo, double bPay, String des) {
+        super(name, id, address, mailId, mobileNo);
+        this.BP = bPay;
+        this.des = des;
+    }
+
+    public void paySlip() {
+        double DA = BP * 0.97;
+        double HRA = BP * 0.10;
+        double GrossSalary = BP + DA + HRA;
+        double PF = BP * 0.10;
+        double SCF = BP * 0.10;
+        double NetSalary = GrossSalary - PF - SCF;
+
+        System.out.println("---------------Employee Pay Slips----------------");
+        this.display();
+        System.out.println("Designation: " + des);
+        System.out.println("Basic_Pay: " + BP);
+        System.out.println("Gross Salary: " + GrossSalary + "\t" + "Net Salary: " + NetSalary);
+        System.out.println("---------------------------------------------");
+    }
+}
+
+class Project_Manager extends Employee {
+    private double BP;
+    private String des;
+
+    public Project_Manager(String name, String id, String address, String mailId, String mobileNo, double bPay, String des) {
+        super(name, id, address, mailId, mobileNo);
+        this.BP = bPay;
+        this.des = des;
+    }
+
+    public void paySlip() {
+        double DA = BP * 0.97;
+        double HRA = BP * 0.10;
+        double GrossSalary = BP + DA + HRA;
+        double PF = BP * 0.10;
+        double SCF = BP * 0.10;
+        double NetSalary = GrossSalary - PF - SCF;
+
+        System.out.println("---------------Employee Pay Slips----------------");
+        this.display();
+        System.out.println("Designation: " + des);
+        System.out.println("Basic_Pay: " + BP);
+        System.out.println("Gross Salary: " + GrossSalary + "\t" + "Net Salary: " + NetSalary);
+        System.out.println("---------------------------------------------");
+    }
+}
+
+public class Emp {
+    private ArrayList<Employee> obj = new ArrayList<>();
+    private Scanner get = new Scanner(System.in);
+
+    public void addEmployee() {
+        System.out.println("Enter the Emp_Name:");
+        String name = get.next();
+        System.out.println("Enter the Emp_id:");
+        String id = get.next();
+        System.out.println("Enter the Address:");
+        String address = get.next();
+        System.out.println("Enter the Mail_id:");
+        String mailId = get.next();
+        System.out.println("Enter the Mobile_no:");
+        String mobileNo = get.next();
+        System.out.println("Enter the Designation");
+        System.out.println("1. Programmer \n2. Team Lead \n3. Assistant Project Manager \n4. Project Manager");
+        int c = get.nextInt();
+        System.out.println("Enter the Basic_Pay:");
+        double bPay = get.nextDouble();
+
+        Employee e = null;
+        switch (c) {
+            case 1:
+                e = new Programmer(name, id, address, mailId, mobileNo, bPay, "Programmer");
+                break;
+            case 2:
+                e = new Team_Lead(name, id, address, mailId, mobileNo, bPay, "Team Lead");
+                break;
+            case 3:
+                e = new Assistant_Project_Manager(name, id, address, mailId, mobileNo, bPay, "Assistant Project Manager");
+                break;
+            case 4:
+                e = new Project_Manager(name, id, address, mailId, mobileNo, bPay, "Project Manager");
+                break;
+            default:
+                System.out.println("Invalid choice");
+                return;
+        }
+        if (e != null) {
+            obj.add(e);
+        }
+    }
+
+    public void displayEmployee() {
+        for (Employee e : obj) {
+            e.paySlip();
+        }
+    }
+
+    public static void main(String[] args) throws IOException {
+        Emp x = new Emp();
+        Scanner scr = new Scanner(System.in);
+        int ch = 0;
+        String check;
+
+        do {
+            System.out.println("Enter Your choice:");
+            System.out.println("\n1. Add Employee \n2. Display Pay Slip");
+            ch = scr.nextInt();
+
+            switch (ch) {
+                case 1:
+                    x.addEmployee();
+                    System.out.println("Do you want to continue? Press 'y':");
+                    check = scr.next();
+                    break;
+                case 2:
+                    x.displayEmployee();
+                    System.out.println("Do you want to continue? Press 'y':");
+                    check = scr.next();
+                    break;
+                default:
+                    System.out.println("Enter Correct choice");
+                    return;
+            }
+        } while (check.equalsIgnoreCase("y"));
+    }
+}
